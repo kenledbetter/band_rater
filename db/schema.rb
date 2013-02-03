@@ -11,7 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201141016) do
+ActiveRecord::Schema.define(:version => 20130203131406) do
+
+  create_table "bands", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "bands_festivals", :id => false, :force => true do |t|
+    t.integer "band_id"
+    t.integer "festival_id"
+  end
+
+  create_table "festivals", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rating"
+    t.integer  "band_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ratings", ["band_id"], :name => "index_ratings_on_band_id"
+  add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

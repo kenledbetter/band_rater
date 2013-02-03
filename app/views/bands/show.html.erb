@@ -1,0 +1,6 @@
+<h1><%= @band.name %></h1>
+<p><%= @band.description %></p>
+<p>Average rating: <%= @average_rating %></p>
+<% @band.ratings.each do |rating| %>
+  <%= rating.rating %>
+<% end %>

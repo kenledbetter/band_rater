@@ -4,5 +4,8 @@ BandRater::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   resources :users
   resources :sessions
+  resources :bands
+  resources :ratings
+  resources :festivals
   root :to => 'users#index'
 end

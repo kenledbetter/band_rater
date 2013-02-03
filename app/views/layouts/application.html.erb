@@ -7,8 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="login">
+    <ul>
+    <% if user = current_user %>
+      <li>Logged in as: <%= link_to user.email, user %></li>
+      <li><%= link_to "Logout", :logout %></li>
+    <% else %>
+      <li><%= link_to "Login", :login %></li>
+    <% end %>
+    </ul>
+  </div>
+  <div id="container">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>

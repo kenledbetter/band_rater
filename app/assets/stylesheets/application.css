@@ -29,6 +29,14 @@ td {
   padding: 4px 5px;
 }
 
+.strip1 {
+  background-color: #F9F9F9;
+}
+
+.strip2 {
+  background-color: #E8E6E4;
+}
+
 #header {
   position: fixed;
 

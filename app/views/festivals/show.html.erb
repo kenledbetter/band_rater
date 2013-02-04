@@ -1,4 +1,21 @@
 <h1><%= @festival.name %></h1>
-<% @festival.bands.each do |band| %>
-  <%= band.name %>
-<% end %>
+<table>
+  <thead>
+    <tr>
+      <td>Rank</td>
+      <td>Name</td>
+      <td>Description</td>
+      <td>Rating</td>
+    </tr>
+  </thead>
+  <% i = 1 %>
+  <% @bands.each do |band| %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= band.name %></td>
+        <td><%= band.description %></td>
+        <td><%= number_with_precision(band.average_rating, :precision => 2) %></td>
+      </tr>
+      <% i += 1 %>
+  <% end %>
+</table>

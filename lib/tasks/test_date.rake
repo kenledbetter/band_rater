@@ -26,6 +26,9 @@ namespace :test_data do
   
     bands = []
 
+    description =
+      "A fusion, bluegrass, afrobeat band from Seattle with nine cello players."
+
     begin
       adjective = adjectives.sample
       noun = nouns.sample
@@ -43,7 +46,7 @@ namespace :test_data do
     end while (bands.length != 20)
 
     bands.each do |band|
-      Band.find_or_create_by_name(band)
+      Band.find_or_create_by_name(:name => band, :description => description)
     end
   end
   tasks.push(:add_test_bands)
@@ -52,7 +55,7 @@ namespace :test_data do
   task :add_test_users => :environment do
     puts "Adding test users"
 
-    ["Jason", "Valerie", "Natalie"].each do |user|
+    ["Scott", "Jean", "Hank", "Bobby", "Warren"].each do |user|
       User.find_or_create_by_email(
         :email => user,
         :password => user,
@@ -64,7 +67,7 @@ namespace :test_data do
 
   desc "Add test ratings"
   task :add_test_ratings => :environment do
-    puts "Add test ratings"
+    puts "Adding test ratings"
 
     Band.find(:all).each do |band|
       User.find(:all).each do |user|
@@ -83,7 +86,7 @@ namespace :test_data do
 
   desc "Add test festivals"
   task :add_test_festivals => :environment do
-    puts "Add test festivals"
+    puts "Adding test festivals"
 
     ["SXSW 2013", "ACL 2013", "FFF 2013"].each do |festival_name|
       Festival.find_or_create_by_name(festival_name)

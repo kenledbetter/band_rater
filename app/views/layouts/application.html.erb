@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>BandRater</title>
+  <title>Band Rater</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="login">
-    <ul>
-    <% if user = current_user %>
-      <li>Logged in as: <%= link_to user.email, user %></li>
-      <li><%= link_to "Logout", :logout %></li>
-    <% else %>
-      <li><%= link_to "Login", :login %></li>
-    <% end %>
-    </ul>
+  <div id="header">
+    <div id="navigation">
+      <h1>Band Rater</h1>
+    </div>
+    <div id="login">
+      <ul>
+      <% if user = current_user %>
+        <li>Logged in as: <%= link_to user.email, user %></li>
+        <li><%= link_to "Logout", :logout %></li>
+      <% else %>
+        <li><%= link_to "Login", :login %></li>
+      <% end %>
+      </ul>
+    </div>
   </div>
-  <div id="container">
+  <div id="main">
     <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
     <% end %>
-    <%= yield %>
+    <div id="content">
+      <%= yield %>
+    </div>
   </div>
+  <div id="sidebar">
+    <h3>Festivals</h3>
+    <ul>
+      <% if (Festival.count == 0) %>
+        <li>
+          <%= link_to "Add some festivals!", new_festival_path %>
+        </li>
+      <% else %>
+        <% Festival.find(:all).each do |festival| %>
+          <li>
+            <%= link_to festival.name, festival %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div id="footer" />
 </body>
 </html>

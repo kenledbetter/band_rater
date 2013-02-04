@@ -18,6 +18,7 @@ class FestivalsController < ApplicationController
   end
 
   def show
-    @festival = Festival.find(params[:id], :include => :bands)
+    @festival = Festival.find(params[:id])
+    @bands = Band.where(:festival => @festival)
   end
 end

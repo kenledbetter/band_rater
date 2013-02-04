@@ -11,4 +11,11 @@ class Rating < ActiveRecord::Base
     :presence => true
   validates :band, :presence => true
   validates :user, :presence => true
+  after_save :after_save_callback
+
+  def after_save_callback
+    # Update average_rating in associated band
+    self.band.average_rating = self.band.ratings.average(:rating)
+    self.band.save
+  end
 end

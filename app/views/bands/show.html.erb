@@ -1,6 +1,15 @@
 <h1><%= @band.name %></h1>
 <p><%= @band.description %></p>
-<p>Average rating: <%= @average_rating %></p>
-<% @band.ratings.each do |rating| %>
-  <%= rating.rating %>
-<% end %>
+<p>Average rating: <%= @band.average_rating %></p>
+<table>
+  <% @band.ratings.each do |rating| %>
+    <tr>
+      <td>
+        <%= link_to rating.user.email, rating.user %>
+      </td>
+      <td>
+        <%= link_to rating.rating, rating %>
+      </td>
+    </tr>
+  <% end %>
+</table>

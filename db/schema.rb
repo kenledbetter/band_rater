@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203131406) do
+ActiveRecord::Schema.define(:version => 20130203190122) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
+    t.decimal  "average_rating", :precision => 3, :scale => 2
   end
 
   create_table "bands_festivals", :id => false, :force => true do |t|

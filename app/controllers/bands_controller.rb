@@ -13,13 +13,26 @@ class BandsController < ApplicationController
     end
   end
 
+  def edit
+    @band = Band.find(params[:id])
+  end
+
+  def update
+    @band = Band.find(params[:id])
+
+
+    if @band.update_attributes(params[:band])
+      redirect_to bands_path, :notice => "Band updated"
+    else
+      render "edit"
+    end
+  end
+
   def index
-    @bands = Band.find(:all)
+    @bands = Band.order("average_rating desc").find(:all)
   end
 
   def show
     @band = Band.find(params[:id], :include => :ratings)
-    ratings = @band.ratings.map{|rating| rating.rating}
-    @average_rating = ratings.inject(0.0) {|sum, rating| sum + rating}/ratings.size
   end
 end

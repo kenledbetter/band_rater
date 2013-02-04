@@ -1,6 +1,21 @@
-<% @bands.each do |band| %>
-  <div class="band">
-    <%= band.name %><br />
-    <%= band.description %>
-  </div>
-<% end %>
+<h1>Bands</h1>
+<table>
+  <tr>
+    <td>
+      Name
+    </td>
+    <td>
+      Average Rating
+    </td>
+  </tr>
+  <% @bands.each do |band| %>
+    <tr>
+      <td>
+        <%= link_to band.name, band %><br/>
+      </td>
+      <td>
+        <%= band.average_rating %>
+      </td>
+    </tr>
+  <% end %>
+</table>

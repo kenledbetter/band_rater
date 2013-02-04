@@ -18,7 +18,12 @@ class FestivalsController < ApplicationController
   end
 
   def show
-    @festival = Festival.find(params[:id])
-    @bands = Band.where(:festival => @festival)
+    @festival = Festival.includes(:bands).find(params[:id])
+    @bands = Band
+      .order("average_rating desc")
+      .all(
+        :joins => :festivals,
+        :conditions => {:festivals => {:id => @festival.id}}
+      )
   end
 end

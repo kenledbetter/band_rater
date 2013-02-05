@@ -1,6 +1,9 @@
 <h1><%= @band.name %></h1>
 <p><%= @band.description %></p>
-<p>Average rating: <%= @band.average_rating %></p>
+<p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
+<% if current_user %>
+  <%=link_to "Add or modify rating", new_rating_path(:band_id => @band.id) %>
+<% end %>
 <table>
   <% @band.ratings.each do |rating| %>
     <tr>

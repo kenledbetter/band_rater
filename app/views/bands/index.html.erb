@@ -1,21 +1,2 @@
 <h1>Bands</h1>
-<table id="bands">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Average Rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @bands.each do |band| %>
-      <tr>
-        <td>
-          <%= link_to band.name, band %><br/>
-        </td>
-        <td>
-          <%= number_with_precision(band.average_rating, :precision => 2) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render :partial => 'list' %>

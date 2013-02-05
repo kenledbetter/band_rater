@@ -1,23 +1,2 @@
 <h1><%= @festival.name %></h1>
-<table id="bands">
-  <thead>
-    <tr>
-      <th>Rank</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% i = 1 %>
-    <% @bands.each do |band| %>
-        <tr>
-          <td><%= i %></td>
-          <td><%= link_to band.name, band %></td>
-          <td><%= band.description %></td>
-          <td><%= number_with_precision(band.average_rating, :precision => 2) %></td>
-        </tr>
-        <% i += 1 %>
-    <% end %>
-  </tbody>
-</table>
+<%= render :partial => 'bands/list' %>

@@ -31,7 +31,8 @@
     </div>
   </div>
   <div id="sidebar">
-    <h3>Festivals</h3>
+    <h3>News</h3>
+    <h3><%= link_to "Festivals", festivals_path %></h3>
     <ul>
       <% if (Festival.count == 0) %>
         <li>
@@ -45,6 +46,8 @@
         <% end %>
       <% end %>
     </ul>
+    <h3><%= link_to "Bands", bands_path %></h3>
+    <h3><%= link_to "Users", users_path %></h3>
   </div>
   <div id="footer" />
 </body>

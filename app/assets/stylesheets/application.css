@@ -144,6 +144,19 @@ td {
   margin: 0 0 5px 0;
 }
 
+#sidebar>h3>a {
+  text-decoration: none;
+  display: block;
+  color: #ffffff;
+  padding: 4px 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+#sidebar>h3>a:hover {
+  background: #E2654D;
+}
+
 #sidebar>ul {
   list-style: none;
   margin-left: 0;

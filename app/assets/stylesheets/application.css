@@ -37,6 +37,15 @@ td {
   background-color: #E8E6E4;
 }
 
+#flash_notice, #flash_error, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  background-color: #E2654D;
+  border: 1px solid #543f31;
+}
+
 #header {
   position: fixed;
 
@@ -47,7 +56,7 @@ td {
   padding: 5px;
   border-bottom: 1px solid #543f31;
 
-  background-color: #dfd2c8;
+  background-color: #DFD2C8;
   background: #E2654D;
 
   color: #fff;

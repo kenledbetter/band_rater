@@ -10,7 +10,7 @@
   <% @ratings.each do |rating| %>
     <tr>
       <td><%= link_to rating.band.name, rating.band %></td>
-      <td><%= link_to rating.user.email, rating.user %></td>
+      <td><%= link_to rating.user.name, rating.user %></td>
       <td><%= link_to rating.rating, rating %></td>
       <td><%= rating.updated_at %></td>
     </tr>

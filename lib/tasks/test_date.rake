@@ -56,8 +56,10 @@ namespace :test_data do
     puts "Adding test users"
 
     ["Scott", "Jean", "Hank", "Bobby", "Warren"].each do |user|
-      User.find_or_create_by_email(
-        :email => user,
+      User.find_or_create_by_name(
+        :name => user,
+        :email => "#{user.downcase}@xavier.edu",
+        :email_confirmation => "#{user.downcase}@xavier.edu",
         :password => user,
         :password_confirmation => user
       )

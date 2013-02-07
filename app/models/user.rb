@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
   has_many :ratings
   validates_presence_of :name
   validates_presence_of :email
-  validates_confirmation_of :email
+  validates_confirmation_of :email, :if => :email_changed?
   validates_presence_of :password, :on => :create
 end

@@ -19,12 +19,6 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    # Only attempt to update email if not blank
-    if params[:email_confirmation].blank? 
-      params.delete(:email_confirmation) 
-      params.delete(:email) if params[:email].blank? 
-    end 
-
     # Only attempt to update password if not blank
     if params[:password_confirmation].blank? 
       params.delete(:password_confirmation) 

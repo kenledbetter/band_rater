@@ -37,7 +37,7 @@ td {
   background-color: #E8E6E4;
 }
 
-#flash_notice, #flash_error, #flash_alert {
+#flash_notice, #flash_error, #flash_alert, #error_explanation {
   padding: 5px 8px;
   margin: 10px 0;
   color: #fff;

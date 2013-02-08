@@ -16,32 +16,67 @@ class RatingsController < ApplicationController
   end
 
   def create
-    @rating = Rating.new(params[:rating])
-    @rating.user = current_user
-
-    if @rating.save
-      redirect_to @rating.band, :notice => "Rating created"
+    # Only allow logged in users to create ratings
+    if current_user
+      @rating = Rating.new(params[:rating])
+      @rating.user = current_user
+  
+      if @rating.save
+        redirect_to @rating.band, :notice => "Rating created"
+      else
+        render 'new'
+      end
     else
-      render 'new'
+      redirect_to root_url, :notice => "Must be logged in to create a rating"
     end
   end
 
   def edit
     @rating = Rating.find(params[:id])
+
+    redirect_to @rating.band
   end
 
   def update
     @rating = Rating.find(params[:id])
 
-
-    if @rating.update_attributes(params[:rating])
-      redirect_to @rating.band, :notice => "Rating updated"
+    # Only allow matching logged in user to modify rating
+    if current_user && (@rating.user == current_user)
+      if @rating.update_attributes(params[:rating])
+        redirect_to @rating.band, :notice => "Rating updated"
+      else
+        redirect_to @rating.band
+      end
     else
-      render "edit"
+      redirect_to root_url, :notice =>
+      "Only #{@rating.user.name} can modify this rating"
+    end
+  end
+
+  def destroy
+    @rating = Rating.find(params[:id])
+    band = @rating.band
+
+    # Only allow matching logged in user to modify rating
+    if current_user && (@rating.user == current_user)
+      if @rating.destroy
+        redirect_to band, :notice => "Rating deleted"
+      else
+        redirect_to @rating.band
+      end
+    else
+      redirect_to root_url, :notice =>
+      "Only #{@rating.user.name} can modify this rating"
     end
   end
 
   def index
     @ratings = Rating.order("updated_at desc").find(:all)
+  end
+
+  def show
+    @rating = Rating.includes(:band).find(params[:id])
+    
+    redirect_to @rating.band
   end
 end

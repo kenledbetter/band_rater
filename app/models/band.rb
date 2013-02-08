@@ -3,4 +3,9 @@ class Band < ActiveRecord::Base
   has_and_belongs_to_many :festivals
   attr_accessible :description, :name
   validates :name, :presence => true
+
+  def update_averate_rating
+    self.average_rating = self.ratings.average(:rating)
+    self.save
+  end
 end

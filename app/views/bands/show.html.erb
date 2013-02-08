@@ -2,17 +2,36 @@
 <p><%= @band.description %></p>
 <p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
 <% if current_user %>
-  <%=link_to "Add or modify rating", new_rating_path(:band_id => @band.id) %>
-<% end %>
-<table>
-  <% @band.ratings.each do |rating| %>
-    <tr>
-      <td>
-        <%= link_to rating.user.email, rating.user %>
-      </td>
-      <td>
-        <%= link_to rating.rating, rating %>
-      </td>
-    </tr>
+  <%= form_for @rating do |f| %>
+    <% if @rating.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@rating.errors.count, "error") %>
+          prohibited this rating from being saved:</h2>
+        <ul>
+        <% @rating.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="field">
+      <%= f.hidden_field :band_id, :value => @band.id %>
+    </div>
+    <div class="field">
+      <%= f.label :rating %>
+      <%= f.select :rating, (1..5).to_a.reverse %>
+    </div>
+    <div class="action">
+      <%= f.submit %>
+    </div>
   <% end %>
-</table>
+  <%  if !@rating.new_record? %>
+    <%= button_to "Delete Rating", @rating, :method => :delete %>
+  <% end %>
+<% end %>
+
+<br />
+
+<h2>Rating</h2>
+<%= render :partial => 'ratings/list' %>

@@ -58,7 +58,7 @@ class RatingsController < ApplicationController
     band = @rating.band
 
     # Only allow matching logged in user to modify rating
-    if current_user && (@rating.user == current_user)
+    if check_permission(params[:id)
       if @rating.destroy
         redirect_to band, :notice => "Rating deleted"
       else

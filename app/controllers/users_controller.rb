@@ -13,24 +13,34 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if @user = User.find_by_id(params[:id])
+      if check_permission(@user)
+        render "edit"
+      else
+        redirect_to @user, :notice => "Cannot edit another user's profile" 
+      end
+    else
+      redirect_to users_path, :notice => "User does not exist"
+    end
   end
 
   def update
-    @user = User.find(params[:id])
-
-    # Only attempt to update password if not blank
-    if params[:password_confirmation].blank? 
-      params.delete(:password_confirmation) 
-      params.delete(:password) if params[:password].blank? 
-    end 
-
-    if current_user.id != @user.id
-      redirect_to @user, :notice => "Cannot edit another user's profile" 
-    elsif @user.update_attributes(params[:user])
-      redirect_to users_path, :notice => "User updated"
+    if @user = User.find_by_id(params[:id])
+      # Only attempt to update password if not blank
+      if params[:password_confirmation].blank? 
+        params.delete(:password_confirmation) 
+        params.delete(:password) if params[:password].blank? 
+      end 
+  
+      if !check_permission(@user)
+        redirect_to @user, :notice => "Cannot edit another user's profile" 
+      elsif @user.update_attributes(params[:user], :as => current_user.role)
+        redirect_to users_path, :notice => "User updated"
+      else
+        render "edit"
+      end
     else
-      render "edit"
+      redirect_to users_path, :notice => "User does not exist"
     end
   end
 
@@ -39,7 +49,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:ratings).find(params[:id])
-    @ratings = @user.ratings
+    if @user = User.includes(:ratings).find_by_id(params[:id])
+      @ratings = @user.ratings
+    else
+      redirect_to users_path, :notice => "User does not exist"
+    end
   end
 end

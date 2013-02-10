@@ -1,35 +1,55 @@
 class FestivalsController < ApplicationController
   def new
-    @festival = Festival.new
+    # Only allowed logged in reviewers to create festivals
+    if current_user && current_user.is_reviewer?
+      @festival = Festival.new
+    else
+      redirect_to festivals_path, :notice => "Must be a reviewer to create a festival"
+    end
   end
 
   def create
-    @festival = Festival.new(params[:festival])
-
-    if @festival.save
-      redirect_to festivals_path, :notice => "Festival created"
+    # Only allowed logged in reviewers to create festivals
+    if current_user && current_user.is_reviewer?
+      @festival = Festival.new(params[:festival])
+  
+      if @festival.save
+        redirect_to @festival, :notice => "Festival created"
+      else
+        render "new"
+      end
     else
-      render "new"
+      redirect_to festivals_path, :notice => "Must be a reviewer to create a festival"
     end
   end
 
   def edit
-    @festival = Festival.find(params[:id])
+    # Only allowed logged in reviewers to modify festivals
+    if current_user && current_user.is_reviewer?
+      if @festival = Festival.find_by_id(params[:id])
+        render "edit"
+      else
+        redirect_to @festival, :notice => "Festival does not exist"
+      end
+    else
+      redirect_to festivals_path, :notice => "Must be a reviewer to modify a festival"
+    end
   end
 
   def update
-    @festival = Festival.find(params[:id])
-
-    # Only allow admin to modify festivals
-    if check_permission(:admin => true)
-      if @festival.update_attributes(params[:festival])
-        redirect_to @festival, :notice => "Festival updated"
+    # Only allowed logged in reviewers to modify festivals
+    if current_user && current_user.is_reviewer?
+      if @festival = Festival.find_by_id(params[:id])
+        if @festival.update_attributes(params[:festival])
+          redirect_to festivals_path, :notice => "Festival updated"
+        else
+          render "edit"
+        end
       else
-        redirect_to @festival
+        redirect_to @festival, :notice => "Festival does not exist"
       end
     else
-      redirect_to root_url, :notice =>
-      "Only admins can modify festivals"
+      redirect_to festivals_path, :notice => "Must be a reviewer to modify a festival"
     end
   end
 

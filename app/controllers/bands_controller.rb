@@ -1,29 +1,55 @@
 class BandsController < ApplicationController
   def new
-    @band = Band.new
+    # Only allowed logged in reviewers to create bands
+    if current_user && current_user.is_reviewer?
+      @band = Band.new
+    else
+      redirect_to bands_path, :notice => "Must be a reviewer to create a band"
+    end
   end
 
   def create
-    @band = Band.new(params[:band])
-
-    if @band.save
-      redirect_to bands_path, :notice => "Band created"
+    # Only allowed logged in reviewers to create bands
+    if current_user && current_user.is_reviewer?
+      @band = Band.new(params[:band])
+  
+      if @band.save
+        redirect_to @band, :notice => "Band created"
+      else
+        render "new"
+      end
     else
-      render "new"
+      redirect_to bands_path, :notice => "Must be a reviewer to create a band"
     end
   end
 
   def edit
-    @band = Band.find(params[:id])
+    # Only allowed logged in reviewers to modify bands
+    if current_user && current_user.is_reviewer?
+      if @band = Band.find_by_id(params[:id])
+        render "edit"
+      else
+        redirect_to @band, :notice => "Band does not exist"
+      end
+    else
+      redirect_to bands_path, :notice => "Must be a reviewer to modify a band"
+    end
   end
 
   def update
-    @band = Band.find(params[:id])
-
-    if @band.update_attributes(params[:band])
-      redirect_to bands_path, :notice => "Band updated"
+    # Only allowed logged in reviewers to modify bands
+    if current_user && current_user.is_reviewer?
+      if @band = Band.find_by_id(params[:id])
+        if @band.update_attributes(params[:band])
+          redirect_to bands_path, :notice => "Band updated"
+        else
+          render "edit"
+        end
+      else
+        redirect_to @band, :notice => "Band does not exist"
+      end
     else
-      render "edit"
+      redirect_to bands_path, :notice => "Must be a reviewer to modify a band"
     end
   end
 
@@ -33,17 +59,20 @@ class BandsController < ApplicationController
 
   def show
     # Get band and prefetch ratings
-    @band = Band.find(params[:id], :include => :ratings)
-    @ratings = @band.ratings
-
-    # Get rating from current user if logged in
-    if current_user
-      @rating = Rating.where(
-        :band_id => @band, :user_id => current_user).first
-
-      if @rating.nil?
-        @rating = Rating.new
+    if @band = Band.includes(:ratings).find_by_id(params[:id])
+      @ratings = @band.ratings
+  
+      # Get rating from current user if logged in
+      if current_user
+        @rating = Rating.where(
+          :band_id => @band, :user_id => current_user).first
+  
+        if @rating.nil?
+          @rating = Rating.new
+        end
       end
+    else
+      redirect_to bands_path, :notice => "Must be a reviewer to create a band"
     end
   end
 end

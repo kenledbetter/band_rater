@@ -7,5 +7,6 @@ BandRater::Application.routes.draw do
   resources :bands
   resources :ratings
   resources :festivals
-  root :to => 'users#index'
+  resources :index, :only => [:index]
+  root :to => 'index#index'
 end

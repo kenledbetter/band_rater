@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208132016) do
+ActiveRecord::Schema.define(:version => 20130209230803) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20130208132016) do
     t.string   "name"
     t.text     "description"
     t.boolean  "admin",           :default => false
-    t.boolean  "featured",        :default => false
+    t.boolean  "reviewer",        :default => false
   end
 
 end

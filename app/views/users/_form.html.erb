@@ -35,6 +35,16 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <% if check_permission(nil, :admin_required => true) %>
+    <div class="field">
+      <%= f.label :admin %><br />
+      <%= f.select :admin, {"True" => true, "False" => false} %>
+    </div>
+    <div class="field">
+      <%= f.label :reviewer %><br />
+      <%= f.select :reviewer, {"True" => true, "False" => false} %>
+    </div>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

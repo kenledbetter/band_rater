@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130209230803) do
+ActiveRecord::Schema.define(:version => 20130210222323) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130209230803) do
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.decimal  "average_rating", :precision => 3, :scale => 2
+    t.string   "location"
+    t.string   "url"
   end
 
   create_table "bands_festivals", :id => false, :force => true do |t|
@@ -43,6 +45,17 @@ ActiveRecord::Schema.define(:version => 20130209230803) do
 
   add_index "ratings", ["band_id"], :name => "index_ratings_on_band_id"
   add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
+
+  create_table "settings", :force => true do |t|
+    t.string   "var",                      :null => false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email"

@@ -1,5 +1,4 @@
+<h1>Festivals</h1>
 <% @festivals.each do |festival| %>
-  <div class="festival">
-    <%= festival.name %><br />
-  </div>
+    <%= link_to festival.name, festival %><br />
 <% end %>

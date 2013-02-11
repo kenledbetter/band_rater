@@ -1,0 +1,11 @@
+<h1>Settings</h1>
+
+<%= form_tag('/settings', :method => :put) do %>
+  <div class="field">
+    <%= label_tag "settings[index]", "Festival to show on front page" %><br />
+    <%= select_tag "settings[index]", options_from_collection_for_select(Festival.all, :id, :name) %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Save Settings' %>
+  </div>
+<% end %>

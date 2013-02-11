@@ -1,1 +1,2 @@
-<h1>Rating for <%= @rating.band.name %></h1>
+<h1><%= @rating.user.name%>'s Rating for <%= @rating.band.name %></h1>
+<%= render :partial => 'show' %>

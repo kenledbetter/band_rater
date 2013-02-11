@@ -1,34 +1,10 @@
 <h1><%= @band.name %></h1>
+<p><%= @band.location %></p>
+<p><%= link_to @band.url, @band.url %></p>
 <p><%= @band.description %></p>
 <p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
 <% if current_user %>
-  <%= form_for @rating do |f| %>
-    <% if @rating.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@rating.errors.count, "error") %>
-          prohibited this rating from being saved:</h2>
-        <ul>
-        <% @rating.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-  
-    <div class="field">
-      <%= f.hidden_field :band_id, :value => @band.id %>
-    </div>
-    <div class="field">
-      <%= f.label :rating %>
-      <%= f.select :rating, (1..5).to_a.reverse %>
-    </div>
-    <div class="action">
-      <%= f.submit %>
-    </div>
-  <% end %>
-  <%  if !@rating.new_record? %>
-    <%= button_to "Delete Rating", @rating, :method => :delete %>
-  <% end %>
+  <%= render :partial => 'ratings/form' %>
 <% end %>
 
 <br />

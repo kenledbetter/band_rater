@@ -41,7 +41,7 @@ class RatingsController < ApplicationController
     @rating = Rating.find(params[:id])
 
     # Only allow matching logged in user to modify rating
-    if current_user && (@rating.user == current_user)
+    if check_permission(@rating.user)
       if @rating.update_attributes(params[:rating])
         redirect_to @rating.band, :notice => "Rating updated"
       else
@@ -58,7 +58,7 @@ class RatingsController < ApplicationController
     band = @rating.band
 
     # Only allow matching logged in user to modify rating
-    if check_permission(params[:id)
+    if check_permission(@rating.user)
       if @rating.destroy
         redirect_to band, :notice => "Rating deleted"
       else

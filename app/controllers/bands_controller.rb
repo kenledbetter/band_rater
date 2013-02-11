@@ -59,8 +59,9 @@ class BandsController < ApplicationController
 
   def show
     # Get band and prefetch ratings
-    if @band = Band.includes(:ratings).find_by_id(params[:id])
+    if @band = Band.includes(:ratings, :festivals).find_by_id(params[:id])
       @ratings = @band.ratings
+      @festivals = @band.festivals
   
       # Get rating from current user if logged in
       if current_user

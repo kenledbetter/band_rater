@@ -1,8 +1,8 @@
 <%= form_for @rating do |f| %>
   <% if @rating.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
-
+      <h2><%= pluralize(@rating.errors.count, "error") %>
+        prohibited this rating from being saved:</h2>
       <ul>
       <% @rating.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -12,15 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :band %>
-    <%= f.collection_select :band_id, Band.find(:all), :id, :name %>
+    <%= f.hidden_field :band_id, :value => @band.id %>
   </div>
-  <% (0..5).each do |i| %>
-    <div class="field">
-      <%= f.radio_button :rating, i%><%= i %> 
-    </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :rating %>
+    <%= f.select :rating, (1..5).to_a.reverse %>
+  </div>
   <div class="action">
     <%= f.submit %>
   </div>
+<% end %>
+<%  if !@rating.new_record? %>
+  <%= button_to "Delete Rating", @rating, :method => :delete %>
 <% end %>

@@ -1,7 +1,7 @@
 class Band < ActiveRecord::Base
   has_many :ratings
   has_and_belongs_to_many :festivals
-  attr_accessible :description, :name
+  attr_accessible :description, :name, :location, :url
   validates :name, :presence => true
 
   def update_averate_rating

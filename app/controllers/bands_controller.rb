@@ -41,7 +41,7 @@ class BandsController < ApplicationController
     if current_user && current_user.is_reviewer?
       if @band = Band.find_by_id(params[:id])
         if @band.update_attributes(params[:band])
-          redirect_to bands_path, :notice => "Band updated"
+          redirect_to @band, :notice => "Band updated"
         else
           render "edit"
         end

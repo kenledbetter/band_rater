@@ -1,6 +1,7 @@
 <h1><%= @band.name %></h1>
+<p><%= link_to "Edit band", edit_band_path(@band) %>
 <p><%= @band.location %></p>
-<p><%= link_to @band.url, @band.url %></p>
+<p><%= link_to @band.url, @band.url, :target => "_blank" %></p>
 <p><%= @band.description %></p>
 <p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
 <% if current_user %>
@@ -10,4 +11,4 @@
 <br />
 
 <h2>Rating</h2>
-<%= render :partial => 'ratings/list' %>
+<%= render :partial => 'ratings/list', :locals => {:hide_band => true} %>

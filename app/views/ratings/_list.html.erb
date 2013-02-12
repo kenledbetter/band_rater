@@ -1,18 +1,28 @@
+<% hide_band ||= false %>
+<% hide_user ||= false %>
 <table id="ratings">
   <thead>
     <tr>
-      <th>Band</th>
-      <th>User</th>
+      <% if !hide_band %>
+        <th>Band</th>
+      <% end %>
+      <% if !hide_user %>
+        <th>User</th>
+      <% end %>
       <th>Rating</th>
       <th>Last Updated</th>
     </tr>
   </thead>
   <% @ratings.each do |rating| %>
     <tr>
-      <td><%= link_to rating.band.name, rating.band %></td>
-      <td><%= link_to rating.user.name, rating.user %></td>
-      <td><%= link_to rating.rating, rating %></td>
-      <td><%= rating.updated_at %></td>
+      <% if !hide_band %>
+        <td><%= link_to rating.band.name, rating.band %></td>
+      <% end %>
+      <% if !hide_user %>
+        <td><%= link_to rating.user.name, rating.user %></td>
+      <% end %>
+      <td><%= rating.rating %></td>
+      <td><%= rating.updated_at.strftime('%Y-%m-%d') %></td>
     </tr>
   <% end %>
 </table>

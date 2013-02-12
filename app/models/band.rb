@@ -1,6 +1,7 @@
 class Band < ActiveRecord::Base
   has_many :ratings
-  has_and_belongs_to_many :festivals
+  has_many :lineups
+  has_many :festivals, :through => :lineups, :uniq => true
   attr_accessible :description, :name, :location, :url
   validates :name, :presence => true
 

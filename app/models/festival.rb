@@ -1,4 +1,5 @@
 class Festival < ActiveRecord::Base
-  has_and_belongs_to_many :bands
+  has_many :lineups
+  has_many :bands, :through => :lineups, :uniq => true
   attr_accessible :name, :date
 end

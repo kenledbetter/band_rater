@@ -55,4 +55,25 @@ namespace :import_data do
       end
     end
   end
+
+  desc "Import lineup"
+  task :import_lineup, [:file, :festival] => :environment do |t, args|
+    # Load YAML file, should be array of band hash rows
+    if (args.file.nil?)
+      raise "Must provide YAML file input"
+    end
+
+    if (args.festival.nil?)
+      raise "Must provide a festival"
+    end
+
+    if (festival = Festival.find_by_name(args.festival))
+      bands = YAML::load(File.open(args.file))
+      bands.each do |band|
+        if (band = Band.find_by_name(band[:name]))
+          Lineup.create(:festival => festival, :band => band)
+        end
+      end
+    end
+  end
 end

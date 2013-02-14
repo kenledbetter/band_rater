@@ -62,6 +62,7 @@ class BandsController < ApplicationController
     if @band = Band.includes(:ratings, :festivals).find_by_id(params[:id])
       @ratings = @band.ratings
       @festivals = @band.festivals
+      @lineup = Lineup.new(:band => @band)
   
       # Get rating from current user if logged in
       if current_user

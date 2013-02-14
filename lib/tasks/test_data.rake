@@ -46,7 +46,10 @@ namespace :test_data do
     end while (bands.length != 20)
 
     bands.each do |band|
-      Band.find_or_create_by_name(:name => band, :description => description)
+      Band.find_or_create_by_name(
+        :name => band,
+        :description => description,
+        :popularity => rand(999999)/100000.0)
     end
   end
   tasks.push(:add_test_bands)

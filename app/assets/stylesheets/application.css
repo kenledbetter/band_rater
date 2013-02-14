@@ -13,6 +13,14 @@
  *= require_tree .
  */
 
+#logo {
+  text-decoration: none;
+  color: #fff;
+  font-size: 30px;
+  line-height: 30px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
@@ -84,6 +92,7 @@ td {
 #header ul>li>a {
   text-decoration: none;
   color: #fff;
+  line-height: 28px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
 }
 

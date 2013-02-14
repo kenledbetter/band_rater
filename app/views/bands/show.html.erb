@@ -6,6 +6,7 @@
 <p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
 <% if current_user %>
   <%= render :partial => 'ratings/form' %>
+  <%= render :partial => 'lineup' %>
 <% end %>
 
 <br />

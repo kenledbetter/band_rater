@@ -6,6 +6,7 @@
       <th>Location</th>
       <th>Description</th>
       <th>Rating</th>
+      <th>Popularity</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,7 @@
           <td><%= band.location %></td>
           <td><%= band.description %></td>
           <td><%= number_with_precision(band.average_rating, :precision => 2) %></td>
+          <td><%= number_with_precision(band.popularity, :precision => 2) %></td>
         </tr>
         <% i += 1 %>
     <% end %>

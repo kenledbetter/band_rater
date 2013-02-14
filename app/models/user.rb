@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_confirmation_of :email, :if => :email_changed?
   validates_presence_of :password, :on => :create
+  default_scope order(:name)
 
   def role
     # Return current role admin > reviewer > default

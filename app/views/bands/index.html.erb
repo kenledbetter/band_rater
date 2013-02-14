@@ -1,5 +1,5 @@
 <h1>Bands</h1>
 <% if current_user && current_user.is_reviewer? %>
-  <p><%= link_to "Add band", new_band_path %></p>
+  <p><%= link_to "Add Band", new_band_path %></p>
 <% end %>
 <%= render :partial => 'list' %>

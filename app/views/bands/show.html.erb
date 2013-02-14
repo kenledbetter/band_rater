@@ -1,5 +1,5 @@
 <h1><%= @band.name %></h1>
-<p><%= link_to "Edit band", edit_band_path(@band) %>
+<p><%= link_to "Edit Band", edit_band_path(@band) %>
 <p><%= @band.location %></p>
 <p><%= link_to @band.url, @band.url, :target => "_blank" %></p>
 <p><%= @band.description %></p>
@@ -12,3 +12,6 @@
 <% end %>
 <h2>Ratings</h2>
 <%= render :partial => 'ratings/list', :locals => {:hide_band => true} %>
+<br />
+<h2>Festivals</h2>
+<%= render :partial => 'festivals/list', :locals => {:hide_band => true} %>

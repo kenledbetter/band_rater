@@ -41,7 +41,7 @@ class FestivalsController < ApplicationController
     if current_user && current_user.is_reviewer?
       if @festival = Festival.find_by_id(params[:id])
         if @festival.update_attributes(params[:festival])
-          redirect_to festivals_path, :notice => "Festival updated"
+          redirect_to @festival, :notice => "Festival updated"
         else
           render "edit"
         end
@@ -60,13 +60,5 @@ class FestivalsController < ApplicationController
   def show
     @festival = Festival.includes(:bands).find(params[:id])
     @bands = @festival.bands
-=begin
-    @bands = Band
-      .order("average_rating desc")
-      .all(
-        :joins => :festivals,
-        :conditions => {:festivals => {:id => @festival.id}}
-      )
-=end
   end
 end

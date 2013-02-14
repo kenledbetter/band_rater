@@ -9,6 +9,7 @@ BandRater::Application.routes.draw do
   resources :festivals
   resources :lineups, :only => [:create]
   resources :lineups, :only => [:destroy]
+  resources :posts
   resources :settings, :only => [:index]
   put "settings" => "settings#update"
   resources :index, :only => [:index]

@@ -1,4 +1,19 @@
 <h1>Festivals</h1>
-<% @festivals.each do |festival| %>
-    <%= link_to festival.name, festival %><br />
-<% end %>
+<%= link_to "Add Festival", new_festival_path %>
+<table id="festivals">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Date</th>
+  </tr>
+</thead>
+<tbody>
+  <% @festivals.each do |festival| %>
+    <tr>
+      <td><%= link_to festival.name, festival %></td>
+      <td></td>
+      <td></td>
+    </tr>
+  <% end %>
+</tbody>

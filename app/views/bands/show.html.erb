@@ -5,11 +5,10 @@
 <p><%= @band.description %></p>
 <p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
 <% if current_user %>
+  <h2>Your Rating</h2>
   <%= render :partial => 'ratings/form' %>
+  <h2>Add to Festival Lineup</h2>
   <%= render :partial => 'lineup' %>
 <% end %>
-
-<br />
-
-<h2>Rating</h2>
+<h2>Ratings</h2>
 <%= render :partial => 'ratings/list', :locals => {:hide_band => true} %>

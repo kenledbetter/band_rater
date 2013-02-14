@@ -7,8 +7,8 @@ BandRater::Application.routes.draw do
   resources :bands
   resources :ratings
   resources :festivals
-  resources :bands_festivals, :only => [:create]
-  resources :bands_festivals, :only => [:destroy]
+  resources :lineups, :only => [:create]
+  resources :lineups, :only => [:destroy]
   resources :settings, :only => [:index]
   put "settings" => "settings#update"
   resources :index, :only => [:index]

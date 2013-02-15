@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessible :reviewer, :admin, :featured, :as => :admin
   has_secure_password
   has_many :ratings
+  has_many :posts
   validates_presence_of :name
   validates_presence_of :email
   validates_confirmation_of :email, :if => :email_changed?

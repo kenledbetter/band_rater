@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
   belongs_to :festival
-  attr_accessible :body, :title, :festival_id
+  belongs_to :user
+  attr_accessible :body, :title, :publish, :festival_id, :user_id
 end

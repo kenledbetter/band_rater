@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214193442) do
+ActiveRecord::Schema.define(:version => 20130215020139) do
 
   create_table "bands", :force => true do |t|
     t.string   "name"
@@ -50,8 +50,10 @@ ActiveRecord::Schema.define(:version => 20130214193442) do
     t.string   "title"
     t.text     "body"
     t.integer  "festival_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "publish",     :default => false
+    t.integer  "user_id"
   end
 
   add_index "posts", ["festival_id"], :name => "index_posts_on_festival_id"

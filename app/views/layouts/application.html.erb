@@ -33,6 +33,7 @@
     </div>
   </div>
   <div id="sidebar">
+    <h3><%= link_to "Featured", posts_path %></h3>
     <h3><%= link_to "Festivals", festivals_path %></h3>
     <ul>
       <% if (Festival.count == 0) %>

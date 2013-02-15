@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <h2><%= link_to post.title, post %></h2>
+  <%= post.festival.name %><br />
+  <%= post.body.html_safe %><br />
+<% end %>

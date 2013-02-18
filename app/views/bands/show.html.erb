@@ -1,7 +1,9 @@
 <h1><%= @band.name %></h1>
 <div class="row-fluid">
   <div class="span8">
-    <p><%= link_to "Edit Band", edit_band_path(@band) %>
+    <% if current_user && current_user.is_reviewer? %>
+      <p><%= button_to "Edit Band", edit_band_path(@band), :method => :get, :class => "btn" %>
+    <% end %>
     <p><strong>Location:</strong> <%= @band.location %></p>
     <p><strong>Website:</strong> <%= link_to @band.url, @band.url, :target => "_blank" %></p>
     <p><%= @band.description %></p>

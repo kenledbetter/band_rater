@@ -1,5 +1,6 @@
 <% @posts.each do |post| %>
   <h2><%= link_to post.title, post %></h2>
-  <%= post.festival.name %><br />
+  <p><em>Written by <%= post.user.name %></em></p>
+  <p><%= post.festival.name %></p>
   <%= post.body.html_safe %><br />
 <% end %>

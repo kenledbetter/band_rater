@@ -1,3 +1,4 @@
 <h1><%= @post.title %></h1>
-<%= @post.festival.name %><br />
+<p><em>Written by <%= @post.user.name %></em></p>
+<p><%= @post.festival.name %></p>
 <%= @post.body.html_safe %>

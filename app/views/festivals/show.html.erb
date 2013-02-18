@@ -1,4 +1,6 @@
 <h1><%= @festival.name %></h1>
-<%= link_to "Edit Festival", edit_festival_path(@festival) %><br />
-<%= @festival.date %>
+<% if current_user && current_user.is_reviewer? %>
+  <%= button_to "Edit Festival", edit_festival_path, :method => :get, :class => "btn" %>
+<% end %>
+<strong>Date:</strong> <%= @festival.date %>
 <%= render :partial => 'bands/list' %>

@@ -6,6 +6,6 @@
     <%= select_tag "lineup[festival_id]", options_from_collection_for_select(Festival.all, :id, :name), :class => "input-medium" %>
   </div>
   <div class="actions">
-    <%= submit_tag 'Add Band to Festival' %>
+    <%= submit_tag "Add Band", :class => "btn" %>
   </div>
 <% end %>

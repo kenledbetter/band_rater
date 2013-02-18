@@ -15,7 +15,7 @@
     <%= f.hidden_field :band_id, :value => @band.id %>
   </div>
   <div class="field">
-    <%= f.select :rating, (1..5).to_a.reverse, {}, {:class => "input-small"} %>
+    <%= f.select :rating, (1..5).to_a.reverse, {}, {:class => "input-medium"} %>
   </div>
   <div class="action">
     <%= f.submit @rating.new_record? ? "Create Rating" : "Update Rating", :class => "btn" %>

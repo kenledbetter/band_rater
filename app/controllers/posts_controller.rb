@@ -64,7 +64,13 @@ class PostsController < ApplicationController
   end
 
   def show
-    if @post = Post.includes(:user, :festival).where(:id => params[:id], :publish => true).first
+    constraints = {:id => params[:id]}
+
+    if !current_user || !current_user.is_reviewer?
+      constraints[:publish] = true
+    end
+
+    if @post = Post.includes(:user, :festival).where(constraints).first
       render "show"
     else
       redirect_to posts_path, :notice => "Post does not exist"

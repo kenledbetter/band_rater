@@ -1,3 +1,5 @@
 <h1>Festivals</h1>
-<%= link_to "Add Festival", new_festival_path %>
+<% if current_user && current_user.is_reviewer? %>
+  <%= button_to "Add Festival", new_festival_path, :method => :get, :class => "btn" %>
+<% end %>
 <%= render :partial => 'list' %>

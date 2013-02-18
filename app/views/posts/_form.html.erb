@@ -1,17 +1,17 @@
 <%= form_for @post do |f| %>
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
     <%= f.hidden_field :user_id %>
   </div>
   <div class="field">
-    <%= f.label :festival %><br />
+    <%= f.label :festival %>
     <%= f.select:festival_id, options_from_collection_for_select(Festival.all, :id, :name) %>
   </div>
   <div class="field">
-    <%= f.label :body %><br />
+    <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
   <div class="field">
@@ -19,6 +19,6 @@
     <%= f.check_box :publish %>
   </div>
   <div class="action">
-    <%= f.submit %>
+    <%= f.submit @post.new_record? ? "Create Post" : "Update Post", :class => "btn" %>
   </div>
 <% end %>

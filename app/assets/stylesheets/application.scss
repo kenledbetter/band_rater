@@ -15,6 +15,10 @@
 
 @import "bootstrap";
 
+.btn, .input-medium {
+  max-width: 100%;
+} 
+
 #logo {
   text-decoration: none;
   color: #fff;

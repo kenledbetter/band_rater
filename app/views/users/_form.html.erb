@@ -12,40 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_area :description, :rows => 10 %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :email_confirmation %><br />
+    <%= f.label :email_confirmation %>
     <%= f.text_field :email_confirmation %>
   </div>
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password %>
     <%= f.password_field :password %>
   </div>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
   </div>
   <% if check_permission(nil, :admin_required => true) %>
     <div class="field">
-      <%= f.label :admin %><br />
+      <%= f.label :admin %>
       <%= f.select :admin, {"True" => true, "False" => false} %>
     </div>
     <div class="field">
-      <%= f.label :reviewer %><br />
+      <%= f.label :reviewer %>
       <%= f.select :reviewer, {"True" => true, "False" => false} %>
     </div>
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit @user.new_record? ? "Create User" : "Update User", :class => "btn" %>
   </div>
 <% end %>

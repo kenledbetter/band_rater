@@ -3,7 +3,7 @@
     <%= hidden_field_tag "lineup[band_id]", @band.id %>
   </div>
   <div class="field">
-    <%= select_tag "lineup[festival_id]", options_from_collection_for_select(Festival.all, :id, :name) %>
+    <%= select_tag "lineup[festival_id]", options_from_collection_for_select(Festival.all, :id, :name), :class => "input-medium" %>
   </div>
   <div class="actions">
     <%= submit_tag 'Add Band to Festival' %>

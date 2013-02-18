@@ -26,10 +26,16 @@
   </div>
   <div id="main">
     <div id="content">
+      <div class="container-fluid">
+      <div class="row-fluid">
+      <div class="span12">
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= yield %>
+      </div>
+      </div>
+      </div>
     </div>
   </div>
   <div id="sidebar">
@@ -52,6 +58,7 @@
     <h3><%= link_to "Ratings", ratings_path %></h3>
     <h3><%= link_to "Users", users_path %></h3>
   </div>
-  <div id="footer" />
+  <footer>
+  </footer>
 </body>
 </html>

@@ -1,17 +1,30 @@
 <h1><%= @band.name %></h1>
-<p><%= link_to "Edit Band", edit_band_path(@band) %>
-<p><%= @band.location %></p>
-<p><%= link_to @band.url, @band.url, :target => "_blank" %></p>
-<p><%= @band.description %></p>
-<p>Average rating: <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
-<% if current_user %>
-  <h2>Your Rating</h2>
-  <%= render :partial => 'ratings/form' %>
-  <h2>Add to Festival Lineup</h2>
-  <%= render :partial => 'lineup' %>
-<% end %>
-<h2>Ratings</h2>
+<div class="row-fluid">
+  <div class="span8">
+    <p><%= link_to "Edit Band", edit_band_path(@band) %>
+    <p><strong>Location:</strong> <%= @band.location %></p>
+    <p><strong>Website:</strong> <%= link_to @band.url, @band.url, :target => "_blank" %></p>
+    <p><%= @band.description %></p>
+    <p><strong>Average rating:</strong> <%= number_with_precision(@band.average_rating, :precision => 2) %></p>
+    <p><strong>Popularity:</strong> <%= number_with_precision(@band.popularity, :precision => 2) %></p>
+  </div>
+  <% if current_user %>
+    <div class="span3">
+      <div class="well">
+        <strong>Your Rating</strong>
+        <%= render :partial => 'ratings/form' %>
+      </div>
+      <div class="well">
+        <strong>Add to Festival Lineup</strong>
+        <%= render :partial => 'lineup' %>
+      </div>
+    </div>
+  <% end %>
+  <div class="span1">
+  </div>
+</div>
+<h4>Ratings</h4>
 <%= render :partial => 'ratings/list', :locals => {:hide_band => true} %>
 <br />
-<h2>Festivals</h2>
+<h4>Festivals</h4>
 <%= render :partial => 'festivals/list', :locals => {:hide_band => true} %>

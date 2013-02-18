@@ -13,6 +13,8 @@
  *= require_tree .
  */
 
+@import "bootstrap";
+
 #logo {
   text-decoration: none;
   color: #fff;
@@ -195,7 +197,11 @@ td {
   background: #E2654D;
 }
 
-#footer {
+.well {
+  background: #F9F9F9;
+}
+
+footer {
   position: fixed;
 
   bottom: 0;
@@ -216,3 +222,5 @@ td {
   -moz-box-shadow: inset 0 1px 0 #94a1b0;
   box-shadow: inset 0 1px 0 #94a1b0;
 }
+
+@import "bootstrap-responsive";

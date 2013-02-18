@@ -15,13 +15,12 @@
     <%= f.hidden_field :band_id, :value => @band.id %>
   </div>
   <div class="field">
-    <%= f.label :rating %>
-    <%= f.select :rating, (1..5).to_a.reverse %>
+    <%= f.select :rating, (1..5).to_a.reverse, {}, {:class => "input-small"} %>
   </div>
   <div class="action">
-    <%= f.submit %>
+    <%= f.submit @rating.new_record? ? "Create Rating" : "Update Rating", :class => "btn" %>
   </div>
 <% end %>
 <%  if !@rating.new_record? %>
-  <%= button_to "Delete Rating", @rating, :method => :delete %>
+  <%= button_to "Delete Rating", @rating, :method => :delete, :class => "btn" %>
 <% end %>

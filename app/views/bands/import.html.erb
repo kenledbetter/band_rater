@@ -1,0 +1,8 @@
+<h1>Import bands</h1>
+
+<%= form_tag({:action => :import}, :multipart => true) do %>
+  <div class="field">
+    <%= file_field_tag :file %><br />
+    <%= submit_tag "Upload file" %>
+  </div>
+<% end %>

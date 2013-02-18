@@ -76,4 +76,25 @@ class BandsController < ApplicationController
       redirect_to bands_path, :notice => "Must be a reviewer to create a band"
     end
   end
+
+  def import
+    # Only allow admins to import yaml
+    if current_user && current_user.is_admin?
+      if request.post? && params[:file].present?
+        yaml = YAML::load(params[:file].read)
+
+        yaml.each do |row|
+          if band = Band.find_by_name(row[:name])
+            band.update_attributes(row)
+          end
+        end
+
+        redirect_to import_bands_path, :notice => "File uploaded"
+      else
+        render "import"
+      end
+    else
+      redirect_to bands_path, :notice => "Must be an admin to import files"
+    end
+  end
 end

@@ -4,7 +4,12 @@ BandRater::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   resources :users
   resources :sessions
-  resources :bands
+  resources :bands do
+    collection do
+      get "import"
+      post "import"
+    end
+  end
   resources :ratings
   resources :festivals
   resources :lineups, :only => [:create]

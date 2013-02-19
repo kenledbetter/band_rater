@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Band Rater</title>
+  <title><%= Setting.site_name %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,7 @@
 <body>
   <div id="header">
     <div id="navigation">
-      <%= link_to "Band Rater", root_url, :id => "logo" %>
+    <%= link_to "#{Setting.site_name}", root_url, :id => "logo" %>
     </div>
     <div id="login">
       <ul>
@@ -40,7 +40,7 @@
       </div>
     </div>
   </div>
-  <div id="sidebar">
+  <div class="hidden-phone" id="sidebar">
     <h3><%= link_to "Featured", posts_path %></h3>
     <h3><%= link_to "Festivals", festivals_path %></h3>
     <ul>

@@ -2,8 +2,12 @@
 
 <%= form_tag('/settings', :method => :put) do %>
   <div class="field">
+    <%= label_tag "settings[site_name]", "Name of site" %><br .>
+    <%= text_field_tag "settings[site_name]", Setting.site_name %>
+  </div>
+  <div class="field">
     <%= label_tag "settings[index]", "Festival to show on front page" %><br />
-    <%= select_tag "settings[index]", options_from_collection_for_select(Festival.all, :id, :name) %>
+    <%= select_tag "settings[index]", options_from_collection_for_select(Festival.all, :id, :name, Setting.index) %>
   </div>
   <div class="actions">
     <%= submit_tag 'Save Settings' %>

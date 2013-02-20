@@ -256,5 +256,26 @@ footer {
   background: #F9F9F9;
 }
 
+$btnCustomBackground: #E2654D;
+$btnCustomBackgroundHighlight: darken($btnCustomBackground, 5%);
+
+.btn-custom {
+  @include buttonBackground($btnCustomBackground, $btnCustomBackgroundHighlight);
+}
+
+.btn-group.open {
+  .btn-custom.dropdown-toggle {
+    background-color: $btnCustomBackgroundHighlight;
+  }
+}
+
+.dropdown-menu {
+  background: $btnCustomBackground;
+}
+
+#header
+{
+  z-index: 100;
+}
 
 @import "bootstrap-responsive";

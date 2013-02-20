@@ -13,17 +13,34 @@
     <div id="navigation">
     <%= link_to "#{Setting.site_name}", root_url, :id => "logo" %>
     </div>
-    <div id="login">
+    <div id="login" class="hidden-phone">
       <ul>
       <% if user = current_user %>
         <li>Logged in as: <%= link_to user.name, user %></li>
-        <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
+        <li><%= link_to "Profile", user_path(current_user) %></li>
         <li><%= link_to "Logout", :logout %></li>
       <% else %>
         <li><%= link_to "Login", :login %></li>
         <li><%= link_to "Sign up", new_user_path %></li>
       <% end %>
       </ul>
+    </div>
+    <div id="phone-login" class="visible-phone pull-right">
+      <div class="btn-group">
+        <a class="btn dropdown-toggle btn-custom" data-toggle="dropdown" href="#">
+          <img src="<%= root_url %>/menu.svg" />
+        </a>
+        <ul class="dropdown-menu pull-right">
+        <% if user = current_user %>
+          <li><%= link_to user.name, user %></li>
+          <li><%= link_to "Profile", user_path(current_user) %></li>
+          <li><%= link_to "Logout", :logout %></li>
+        <% else %>
+          <li><%= link_to "Login", :login %></li>
+          <li><%= link_to "Sign up", new_user_path %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   </div>
   <div id="main">

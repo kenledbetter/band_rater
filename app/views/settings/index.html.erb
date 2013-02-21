@@ -9,6 +9,10 @@
     <%= label_tag "settings[index]", "Festival to show on front page" %><br />
     <%= select_tag "settings[index]", options_from_collection_for_select(Festival.all, :id, :name, Setting.index) %>
   </div>
+  <div class="field">
+    <%= label_tag "settings[no_security]", "Disable all user security checks" %><br />
+    <%= select_tag "settings[no_security]", options_for_select([["True", true], ["False", false]], Setting.no_security) %>
+  </div>
   <div class="actions">
     <%= submit_tag 'Save Settings' %>
   </div>

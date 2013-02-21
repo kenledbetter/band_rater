@@ -31,14 +31,18 @@
           <img src="<%= root_url %>/menu.svg" />
         </a>
         <ul class="dropdown-menu pull-right">
-        <% if user = current_user %>
-          <li><%= link_to user.name, user %></li>
-          <li><%= link_to "Profile", user_path(current_user) %></li>
-          <li><%= link_to "Logout", :logout %></li>
-        <% else %>
-          <li><%= link_to "Login", :login %></li>
-          <li><%= link_to "Sign up", new_user_path %></li>
-        <% end %>
+          <li><%= link_to "Featured", posts_path %></li>
+          <li><%= link_to "Festivals", festivals_path %></li>
+          <li><%= link_to "Bands", bands_path %></li>
+          <li><%= link_to "Ratings", ratings_path %></li>
+          <li><%= link_to "Reviewers", users_path %></li>
+          <% if user = current_user %>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li><%= link_to "Logout", :logout %></li>
+          <% else %>
+            <li><%= link_to "Login", :login %></li>
+            <li><%= link_to "Sign up", new_user_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -46,14 +50,14 @@
   <div id="main">
     <div id="content">
       <div class="container-fluid">
-      <div class="row-fluid">
-      <div class="span12">
-      <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <% end %>
-      <%= yield %>
-      </div>
-      </div>
+        <div class="row-fluid">
+          <div class="span12">
+            <% flash.each do |name, msg| %>
+              <%= content_tag :div, msg, :id => "flash_#{name}" %>
+            <% end %>
+            <%= yield %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -75,7 +79,7 @@
     </ul>
     <h3><%= link_to "Bands", bands_path %></h3>
     <h3><%= link_to "Ratings", ratings_path %></h3>
-    <h3><%= link_to "Users", users_path %></h3>
+    <h3><%= link_to "Reviewers", users_path %></h3>
   </div>
   <footer>
   </footer>

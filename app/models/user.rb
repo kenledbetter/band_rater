@@ -7,13 +7,14 @@ class User < ActiveRecord::Base
   has_many :posts
   validates_presence_of :name
   validates_presence_of :email
+  validates_uniqueness_of :email
   validates_confirmation_of :email, :if => :email_changed?
   validates_presence_of :password, :on => :create
   default_scope order(:name)
 
   def role
     # Return current role admin > reviewer > default
-    if self.admin
+    if self.admin || Setting.no_security
       return :admin
     elsif self.reviewer
       return :reviewer
@@ -23,10 +24,10 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.admin
+    self.admin || Setting.no_security
   end
 
   def is_reviewer?
-    self.admin || self.reviewer
+    self.admin || self.reviewer || Setting.no_security
   end
 end

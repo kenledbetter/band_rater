@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def check_permission(user, options = {})
     if !current_user
       return false
-    elsif current_user && current_user.admin
+    elsif current_user && current_user.is_admin?
       return true
     elsif (current_user == user) && !options[:admin_required]
       return true

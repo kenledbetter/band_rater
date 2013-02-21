@@ -84,7 +84,7 @@ class BandsController < ApplicationController
         yaml = YAML::load(params[:file].read)
 
         yaml.each do |row|
-          if band = Band.find_by_name(row[:name])
+          if band = Band.find_or_create_by_name(row[:name])
             band.update_attributes(row)
           end
         end

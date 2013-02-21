@@ -2,7 +2,12 @@ BandRater::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
-  resources :users
+  resources :users do
+    collection do
+      get "import"
+      post "import"
+    end
+  end
   resources :sessions
   resources :bands do
     collection do
@@ -10,10 +15,19 @@ BandRater::Application.routes.draw do
       post "import"
     end
   end
-  resources :ratings
+  resources :ratings do
+    collection do
+      get "import"
+      post "import"
+    end
+  end
   resources :festivals
-  resources :lineups, :only => [:create]
-  resources :lineups, :only => [:destroy]
+  resources :lineups, :only => [:create, :destroy] do
+    collection do
+      get "import"
+      post "import"
+    end
+  end
   resources :posts
   resources :settings, :only => [:index]
   put "settings" => "settings#update"

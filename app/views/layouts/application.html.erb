@@ -16,7 +16,6 @@
     <div id="login" class="hidden-phone">
       <ul>
       <% if user = current_user %>
-        <li>Logged in as: <%= link_to user.name, user %></li>
         <li><%= link_to "Profile", user_path(current_user) %></li>
         <li><%= link_to "Logout", :logout %></li>
       <% else %>

@@ -79,4 +79,29 @@ class RatingsController < ApplicationController
     
     redirect_to @rating.band
   end
+
+  def import
+    # Only allow admins to import yaml
+    if current_user && current_user.is_admin?
+      if request.post? && params[:file].present?
+        yaml = YAML::load(params[:file].read)
+
+        yaml.each do |row|
+          if (band = Band.find_by_name(row[:band])) &&
+            (user = User.find_by_name(row[:user]))
+            if rating = Rating.find_or_create_by_band_id_and_user_id(band.id, user.id)
+              rating.rating = row[:rating]
+              rating.save
+            end
+          end
+        end
+
+        redirect_to import_ratings_path, :notice => "File uploaded"
+      else
+        render "import"
+      end
+    else
+      redirect_to ratings_path, :notice => "Must be an admin to import files"
+    end
+  end
 end

@@ -1,0 +1,18 @@
+<h1>Import lineups</h1>
+
+<p>Upload a YAML file that is an array of Lineup hashes.  This will create a new Lineup or update an existing Lineup and update the associated columns.<p>
+<p>For example:<p>
+<pre>
+---
+- :festival: Alpha
+  :band: Beta
+- :festival: Gamma
+  :band: Delta
+</pre>
+
+<%= form_tag({:action => :import}, :multipart => true) do %>
+  <div class="field">
+    <%= file_field_tag :file %><br />
+    <%= submit_tag "Upload file" %>
+  </div>
+<% end %>

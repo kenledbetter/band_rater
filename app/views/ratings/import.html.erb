@@ -1,0 +1,20 @@
+<h1>Import ratings</h1>
+
+<p>Upload a YAML file that is an array of Rating hashes.  This will currently look up an existing Rating by name and update the associated columns.<p>
+<p>For example:<p>
+<pre>
+---
+- :user: Alpha
+  :band: Beta
+  :rating: 0
+- :name: Gamma
+  :band: Delta
+  :rating: 5
+</pre>
+
+<%= form_tag({:action => :import}, :multipart => true) do %>
+  <div class="field">
+    <%= file_field_tag :file %><br />
+    <%= submit_tag "Upload file" %>
+  </div>
+<% end %>

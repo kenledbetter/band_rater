@@ -1,3 +1,6 @@
 <h1><%= @user.name %></h1>
+<% if current_user && (current_user.id == @user.id || current_user.is_admin?) %>
+  <%= button_to "Edit User", edit_user_path(@user), :method => :get, :class => "btn" %>
+<% end %>
 <p><%= @user.description %></p>
 <%= render :partial => 'ratings/list', :locals => {:hide_user => true} %>

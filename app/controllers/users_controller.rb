@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user], :as => current_user.role)
     if @user.save
       redirect_to root_url, :notice => "Signed up!"
     else
@@ -53,6 +53,31 @@ class UsersController < ApplicationController
       @ratings = @user.ratings
     else
       redirect_to users_path, :notice => "User does not exist"
+    end
+  end
+
+  def import
+    # Only allow admins to import yaml
+    if current_user && current_user.is_admin?
+      if request.post? && params[:file].present?
+        yaml = YAML::load(params[:file].read)
+
+        yaml.each do |row|
+          user = User.find_or_initialize_by_name(row[:name])
+
+          if user.new_record? 
+            user.save(:validate => false)
+          else
+            user.update_attributes(row)
+          end
+        end
+
+        redirect_to import_users_path, :notice => "File uploaded"
+      else
+        render "import"
+      end
+    else
+      redirect_to users_path, :notice => "Must be an admin to import files"
     end
   end
 end

@@ -1,13 +1,13 @@
-<h1>Import bands</h1>
+<h1>Import users</h1>
 
-<p>Upload a YAML file that is an array of Band hashes.  This will create a new Band or update an existing Band by name and update the associated columns.<p>
+<p>Upload a YAML file that is an array of User hashes.  This will create a new User or update an existing User by name and update the associated columns.<p>
 <p>For example:<p>
 <pre>
 ---
 - :name: Alpha
-  :popularity: 3.14
+  :email: alpha@alpha.com
 - :name: Beta
-  :popularity: 4.20
+  :email: beta@beta.com
 </pre>
 
 <%= form_tag({:action => :import}, :multipart => true) do %>

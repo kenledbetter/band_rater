@@ -1,17 +1,18 @@
 <table id="festivals">
-<thead>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Date</th>
-  </tr>
-</thead>
-<tbody>
-  <% @festivals.each do |festival| %>
+  <thead>
     <tr>
-      <td><%= link_to festival.name, festival %></td>
-      <td></td>
-      <td><%= festival.date.strftime('%Y-%m-%d') %></td>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Date</th>
     </tr>
-  <% end %>
-</tbody>
+  </thead>
+  <tbody>
+    <% @festivals.each do |festival| %>
+      <tr>
+        <td><%= link_to festival.name, festival %></td>
+        <td></td>
+        <td><%= festival.date.strftime('%Y-%m-%d') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

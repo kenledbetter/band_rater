@@ -7,8 +7,15 @@
   <% end %>
   <div class="span4">
     <div class="well well-small">
-      <p><%= link_to user.name, user%><p>
-      <p>Number of ratings: <%= user.ratings.count %></p>
+      <div class="row-fluid">
+        <div class="span6">
+          <%= image_tag avatar_url(user) %>
+        </div>
+        <div class="span6">
+          <p><%= link_to user.name, user%></p>
+          <p>Number of ratings: <%= user.ratings.count %></p>
+        </div>
+      </div>
     </div>
   </div>
   <% i = (i + 1) % 3 %>

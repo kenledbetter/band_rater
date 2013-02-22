@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
     :password, :password_confirmation, :as => [:default, :reviewer ,:admin]
   attr_accessible :reviewer, :admin, :featured, :as => :admin
   has_secure_password
-  has_many :ratings
-  has_many :posts
+  has_many :ratings, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
   validates_presence_of :name
   validates_presence_of :email
   validates_uniqueness_of :email

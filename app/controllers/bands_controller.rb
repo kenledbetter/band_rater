@@ -29,7 +29,7 @@ class BandsController < ApplicationController
       if @band = Band.find_by_id(params[:id])
         render "edit"
       else
-        redirect_to @band, :notice => "Band does not exist"
+        redirect_to bands_path, :notice => "Band does not exist"
       end
     else
       redirect_to bands_path, :notice => "Must be a reviewer to modify a band"
@@ -46,7 +46,7 @@ class BandsController < ApplicationController
           render "edit"
         end
       else
-        redirect_to @band, :notice => "Band does not exist"
+        redirect_to bands_path, :notice => "Band does not exist"
       end
     else
       redirect_to bands_path, :notice => "Must be a reviewer to modify a band"
@@ -54,7 +54,7 @@ class BandsController < ApplicationController
   end
 
   def index
-    @bands = Band.order("average_rating desc").find(:all)
+    @bands = Band.find(:all)
   end
 
   def show
@@ -73,7 +73,24 @@ class BandsController < ApplicationController
         end
       end
     else
-      redirect_to bands_path, :notice => "Must be a reviewer to create a band"
+      redirect_to bands_path, :notice => "Band does not exist"
+    end
+  end
+
+  def destroy
+    # Only allowed logged in reviewers to modify bands
+    if current_user && current_user.is_reviewer?
+      if @band = Band.find_by_id(params[:id])
+        if @band.destroy
+          redirect_to bands_path, :notice => "Band deleted"
+        else
+          render "show"
+        end
+      else
+        redirect_to @band, :notice => "Band does not exist"
+      end
+    else
+      redirect_to bands_path, :notice => "Must be a reviewer to modify a band"
     end
   end
 

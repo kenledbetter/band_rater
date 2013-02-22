@@ -2,7 +2,10 @@
 <div class="row-fluid">
   <div class="span8">
     <% if current_user && current_user.is_reviewer? %>
-      <p><%= button_to "Edit Band", edit_band_path(@band), :method => :get, :class => "btn" %>
+      <div class="btn-group">
+        <%= button_to "Edit Band", edit_band_path(@band), :method => :get, :class => "btn" %>
+        <%= button_to "Delete Band", band_path(@band), :method => :delete, :class => "btn", :confirm => "Are you sure?" %>
+      </div>
     <% end %>
     <p><strong>Location:</strong> <%= @band.location %></p>
     <p><strong>Website:</strong> <%= link_to @band.url, @band.url, :target => "_blank" %></p>

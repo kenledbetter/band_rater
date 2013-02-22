@@ -23,10 +23,7 @@ class LineupsController < ApplicationController
         yaml.each do |row|
           if (band = Band.find_by_name(row[:band])) &&
             (festival = Festival.find_by_name(row[:festival]))
-            if lineup = Rating.find_or_create_by_band_id_and_festival_id(band.id, festival.id)
-              lineup.lineup = row[:lineup]
-              lineup.save
-            end
+            Lineup.find_or_create_by_band_id_and_festival_id(band.id, festival.id)
           end
         end
 

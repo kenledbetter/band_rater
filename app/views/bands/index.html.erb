@@ -1,5 +1,17 @@
 <h1>Bands</h1>
 <% if current_user && current_user.is_reviewer? %>
-  <p><%= button_to "Add Band", new_band_path, :method => :get, :class => "btn" %></p>
+  <div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Action
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Add Band", new_band_path, :method => :get %></li>
+      <% if current_user && current_user.is_admin? %>
+        <li><%= link_to "Import Bands", import_bands_path, :method => :get %></li>
+        <li><%= link_to "Export Bands", export_bands_path, :method => :get %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 <%= render :partial => 'list' %>

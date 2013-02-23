@@ -13,6 +13,7 @@ BandRater::Application.routes.draw do
     collection do
       get "import"
       post "import"
+      get "export"
     end
   end
   resources :ratings do

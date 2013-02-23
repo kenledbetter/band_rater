@@ -114,4 +114,26 @@ class BandsController < ApplicationController
       redirect_to bands_path, :notice => "Must be an admin to import files"
     end
   end
+
+  def export
+    # Only allow admins to export yaml
+    if current_user && current_user.is_admin?
+      bands = Band.all
+
+      attributes = []
+
+      bands.each do |band|
+        a = band.attributes
+        a.delete("created_at")
+        a.delete("updated_at")
+        attributes.push(a)
+      end
+
+      send_data attributes.to_yaml,
+        :filename => "bands.yaml",
+        :type => "text/yaml"
+    else
+      redirect_to bands_path, :notice => "Must be an admin to import files"
+    end
+  end
 end

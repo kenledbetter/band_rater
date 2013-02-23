@@ -59,6 +59,7 @@ class FestivalsController < ApplicationController
 
   def show
     @festival = Festival.includes(:bands).find(params[:id])
-    @bands = @festival.bands
+    #@bands = @festival.bands
+    @bands = @festival.bands.order("average_rating desc")
   end
 end

@@ -1,0 +1,16 @@
+<table id="redirects">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @redirects.each do |redirect| %>
+      <tr>
+        <td><%= link_to redirect.source, redirect %></td>
+        <td><%= redirect.destination %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

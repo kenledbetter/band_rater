@@ -29,8 +29,10 @@ BandRater::Application.routes.draw do
     end
   end
   resources :posts
+  resources :redirects
   resources :settings, :only => [:index]
   put "settings" => "settings#update"
   resources :index, :only => [:index]
   root :to => 'index#index'
+  match "*url" => "redirects#redirect"
 end

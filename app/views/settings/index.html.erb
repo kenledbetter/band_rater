@@ -13,6 +13,14 @@
     <%= label_tag "settings[no_security]", "Disable all user security checks" %><br />
     <%= select_tag "settings[no_security]", options_for_select([["True", true], ["False", false]], Setting.no_security) %>
   </div>
+  <div class="field">
+    <%= label_tag "settings[logo_url]", "URL for logo" %><br .>
+    <%= text_field_tag "settings[logo_url]", Setting.logo_url %>
+  </div>
+  <div class="field">
+    <%= label_tag "settings[logo_enable]", "Enable logo" %><br />
+    <%= select_tag "settings[logo_enable]", options_for_select([["True", true], ["False", false]], Setting.logo_enable) %>
+  </div>
   <div class="actions">
     <%= submit_tag 'Save Settings' %>
   </div>

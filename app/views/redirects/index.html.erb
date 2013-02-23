@@ -1,0 +1,5 @@
+<h1>Redirects</h1>
+<% if current_user && current_user.is_admin? %>
+  <p><%= button_to "Add Redirect", new_redirect_path, :method => :get, :class => "btn" %></p>
+<% end %>
+<%= render :partial => 'list' %>

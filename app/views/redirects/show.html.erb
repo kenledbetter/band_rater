@@ -1,0 +1,9 @@
+<h1>Redirect</h1>
+<% if current_user && current_user.is_admin? %>
+  <div class="btn-group">
+    <%= button_to "Edit Redirect", edit_redirect_path(@redirect), :method => :get, :class => "btn" %>
+    <%= button_to "Delete Redirect", redirect_path(@redirect), :method => :delete, :class => "btn", :confirm => "Are you sure?" %>
+  </div>
+<% end %>
+<p><strong>Source:</strong> <%= @redirect.source %>
+<p><strong>Destination:</strong> <%= @redirect.destination %>

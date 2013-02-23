@@ -11,7 +11,11 @@
 <body>
   <div id="header">
     <div id="navigation">
-    <%= link_to "#{Setting.site_name}", root_url, :id => "logo" %>
+      <% if Setting.logo_enable %>
+        <%= link_to image_tag("#{root_url}#{Setting.logo_url}"), root_url, :id => "logo" %>
+      <% else %>
+        <%= link_to "#{Setting.site_name}", root_url, :id => "logo" %>
+      <% end %>
     </div>
     <div id="login" class="hidden-phone">
       <ul>

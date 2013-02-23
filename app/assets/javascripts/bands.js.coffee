@@ -3,4 +3,5 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   $('#bands').dataTable
-    asStripeClasses: ['strip1', 'strip2']
+    asStripeClasses: ['strip1', 'strip2'],
+    iDisplayLength: 25

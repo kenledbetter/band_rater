@@ -2,6 +2,11 @@ BandRater::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :bands
+    end
+  end
   resources :users do
     collection do
       get "import"

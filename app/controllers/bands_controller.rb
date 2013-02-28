@@ -55,10 +55,6 @@ class BandsController < ApplicationController
 
   def index
     @bands = Band.find(:all)
-    respond_to do |format|
-      format.html
-      format.json {render json: @bands }
-    end
   end
 
   def show

@@ -11,7 +11,7 @@
 <body>
   <div id="header">
     <div id="navigation">
-      <% if Setting.logo_enable %>
+      <% if Setting.logo_enable == "true" %>
         <%= link_to image_tag("#{root_url}#{Setting.logo_url}"), root_url, :id => "logo" %>
       <% else %>
         <%= link_to "#{Setting.site_name}", root_url, :id => "logo" %>

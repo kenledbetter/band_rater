@@ -12,9 +12,9 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   default_scope order(:name)
 
+  # Return current role admin > reviewer > default
   def role
-    # Return current role admin > reviewer > default
-    if self.admin || Setting.no_security
+    if self.admin || (Setting.no_security == "true")
       return :admin
     elsif self.reviewer
       return :reviewer
@@ -24,10 +24,10 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.admin || Setting.no_security
+    self.admin || (Setting.no_security == "true")
   end
 
   def is_reviewer?
-    self.admin || self.reviewer || Setting.no_security
+    self.admin || self.reviewer || (Setting.no_security == "true")
   end
 end

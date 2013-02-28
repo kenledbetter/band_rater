@@ -54,7 +54,10 @@ class BandsController < ApplicationController
   end
 
   def index
-    @bands = Band.find(:all)
+    respond_to do |format|
+      format.html
+      format.json {render json: BandsDatatable.new(view_context) }
+    end
   end
 
   def show

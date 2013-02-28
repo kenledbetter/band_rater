@@ -3,5 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   $('#bands').dataTable
-    asStripeClasses: ['strip1', 'strip2'],
+    asStripeClasses: ['strip1', 'strip2']
+    aaSorting: [[ 3, "desc" ]]
     iDisplayLength: 25
+    bProcessing: true
+    bServerSide: true
+    sAjaxSource: $('#bands').data('source')
+    aoColumnDefs: [{sClass: "hidden-phone", aTargets: [ 1, 2 ] }]

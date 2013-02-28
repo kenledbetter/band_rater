@@ -1,7 +1,6 @@
-<table id="bands">
+<table id="bands" data-source="<%= bands_url(format: "json") %>">
   <thead>
     <tr>
-      <th>Rank</th>
       <th>Name</th>
       <th>Location</th>
       <th>Description</th>
@@ -10,17 +9,5 @@
     </tr>
   </thead>
   <tbody>
-    <% i = 1 %>
-    <% @bands.each do |band| %>
-        <tr>
-          <td><%= i %></td>
-          <td><%= link_to band.name, band %></td>
-          <td><%= band.location %></td>
-          <td><%= band.description %></td>
-          <td><%= number_with_precision(band.average_rating, :precision => 2) %></td>
-          <td><%= number_with_precision(band.popularity, :precision => 2) %></td>
-        </tr>
-        <% i += 1 %>
-    <% end %>
   </tbody>
 </table>

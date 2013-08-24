@@ -29,7 +29,11 @@ BandRater::Application.routes.draw do
       post "import"
     end
   end
-  resources :festivals
+  resources :festivals do
+    collection do
+      get "export", path: '/:id/export'
+    end
+  end
   resources :lineups, :only => [:create, :destroy] do
     collection do
       get "import"

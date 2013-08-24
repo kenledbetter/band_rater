@@ -62,4 +62,26 @@ class FestivalsController < ApplicationController
     #@bands = @festival.bands
     @bands = @festival.bands.order("average_rating desc")
   end
+
+  def export
+    # Only allow admins to export yaml
+    if current_user && current_user.is_admin?
+      @festival = Festival.includes(:bands).find(params[:id])
+      @bands = @festival.bands.order("average_rating desc")
+      attributes = []
+
+      @bands.each do |band|
+        a = band.attributes
+        a.delete("created_at")
+        a.delete("updated_at")
+        attributes.push(a)
+      end
+
+      send_data attributes.to_yaml,
+        :filename => "#{@festival.name}.yaml",
+        :type => "text/yaml"
+    else
+      redirect_to bands_path, :notice => "Must be an admin to import files"
+    end
+  end
 end

@@ -1,6 +1,19 @@
 <h1><%= @festival.name %></h1>
 <% if current_user && current_user.is_reviewer? %>
-  <%= button_to "Edit Festival", edit_festival_path, :method => :get, :class => "btn" %>
+  <div class="btn-group">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Action
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <% if current_user && current_user.is_admin? %>
+        <li><%= link_to "Edit Festival", edit_festival_path, :method => :get %></li>
+        <li><%= link_to "Export Festival", export_festivals_path, :method => :get %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
+
 <strong>Date:</strong> <%= @festival.date %>
+
 <%= render :partial => 'bands/list' %>
